@@ -1,7 +1,9 @@
+import 'package:bloc_practice/blocs/bloc_exports.dart';
 import 'package:bloc_practice/constants/my_routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
