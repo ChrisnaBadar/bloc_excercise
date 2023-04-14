@@ -1,8 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 
+import 'package:bloc_practice/blocs/bloc_exports.dart';
+
 class MyDatePicker extends StatelessWidget {
-  const MyDatePicker({super.key});
+  final SelectedDateState selectedDateState;
+  const MyDatePicker({
+    Key? key,
+    required this.selectedDateState,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,10 +17,12 @@ class MyDatePicker extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 16.0),
       child: DatePicker(
         DateTime.now().subtract(const Duration(days: 5)),
-        initialSelectedDate: DateTime.now(),
+        initialSelectedDate: selectedDateState.selectedDate,
         selectionColor: const Color.fromARGB(255, 14, 76, 170),
         selectedTextColor: Colors.white,
-        onDateChange: (date) {},
+        onDateChange: (date) {
+          context.read<SelectedDateBloc>().add(SelectedDateChangedEvents(date));
+        },
         locale: "id_ID",
         daysCount: 8,
         inactiveDates: List.generate(

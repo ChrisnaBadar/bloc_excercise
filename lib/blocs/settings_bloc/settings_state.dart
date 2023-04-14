@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'settings_bloc.dart';
 
 class SettingsState extends Equatable {
@@ -67,6 +66,38 @@ class SettingsState extends Equatable {
       taklim: taklim ?? this.taklim,
       shalawat: shalawat ?? this.shalawat,
       istighfar: istighfar ?? this.istighfar,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'fardhu': fardhu,
+      'tahajud': tahajud,
+      'dhuha': dhuha,
+      'rawatib': rawatib,
+      'tilawah': tilawah,
+      'shaum': shaum,
+      'sedekah': sedekah,
+      'dzikir': dzikir,
+      'taklim': taklim,
+      'shalawat': shalawat,
+      'istighfar': istighfar,
+    };
+  }
+
+  factory SettingsState.fromMap(Map<String, dynamic> map) {
+    return SettingsState(
+      fardhu: map['fardhu'] as bool,
+      tahajud: map['tahajud'] as bool,
+      dhuha: map['dhuha'] as bool,
+      rawatib: map['rawatib'] as bool,
+      tilawah: map['tilawah'] as bool,
+      shaum: map['shaum'] as bool,
+      sedekah: map['sedekah'] as bool,
+      dzikir: map['dzikir'] as bool,
+      taklim: map['taklim'] as bool,
+      shalawat: map['shalawat'] as bool,
+      istighfar: map['istighfar'] as bool,
     );
   }
 }

@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:bloc_practice/blocs/bloc_exports.dart';
 import 'package:equatable/equatable.dart';
 
 part 'settings_event.dart';
 part 'settings_state.dart';
 
-class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
+class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
   SettingsBloc() : super(SettingsInitial()) {
     on<TooggleFardhuEvent>((event, emit) {
       var fardhu = state.fardhu;
@@ -61,5 +62,15 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       shalawat = !shalawat;
       emit(state.copyWith(shalawat: shalawat));
     });
+  }
+
+  @override
+  SettingsState? fromJson(Map<String, dynamic> json) {
+    return SettingsState.fromMap(json);
+  }
+
+  @override
+  Map<String, dynamic>? toJson(SettingsState state) {
+    return state.toMap();
   }
 }
