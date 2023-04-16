@@ -8,9 +8,8 @@ class YaumiSettings extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SettingsBloc(),
-      child: BlocConsumer<SettingsBloc, SettingsState>(
-        listener: (context, state) {},
-        builder: (context, state) {
+      child: BlocBuilder<SettingsBloc, SettingsState>(
+        builder: (context, settingsState) {
           List<Function(bool)> yaumiSettingsEvents = [
             (val) => context.read<SettingsBloc>().add(TooggleFardhuEvent()),
             (val) => context.read<SettingsBloc>().add(TooggleTahajudEvent()),
@@ -25,17 +24,17 @@ class YaumiSettings extends StatelessWidget {
             (val) => context.read<SettingsBloc>().add(TooggleShalawatEvent()),
           ];
           List<bool> yaumiSettingsStates = [
-            state.fardhu,
-            state.tahajud,
-            state.rawatib,
-            state.dhuha,
-            state.tilawah,
-            state.shaum,
-            state.sedekah,
-            state.dzikir,
-            state.taklim,
-            state.istighfar,
-            state.shalawat,
+            settingsState.fardhu,
+            settingsState.tahajud,
+            settingsState.rawatib,
+            settingsState.dhuha,
+            settingsState.tilawah,
+            settingsState.shaum,
+            settingsState.sedekah,
+            settingsState.dzikir,
+            settingsState.taklim,
+            settingsState.istighfar,
+            settingsState.shalawat,
           ];
           List<String> yaumiSettingsTitles = [
             'Shalat Fardhu?',

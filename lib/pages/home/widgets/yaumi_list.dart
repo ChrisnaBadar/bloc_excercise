@@ -9,38 +9,36 @@ import '../../../models/yaumi_model.dart';
 
 class YaumiList extends StatelessWidget {
   final List<YaumiModel> allYaumis;
-  final YaumiState state;
+  final YaumiState yaumiState;
+  final SelectedDateState selectedDateState;
   const YaumiList({
     Key? key,
     required this.allYaumis,
-    required this.state,
+    required this.yaumiState,
+    required this.selectedDateState,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var todayYaumi = allYaumis
-        .where((e) =>
-            e.date ==
-            DateTime(
-                DateTime.now().year, DateTime.now().month, DateTime.now().day))
+        .where((e) => e.date == selectedDateState.selectedDate)
         .toList();
 
     if (todayYaumi.isEmpty) {
       context.read<YaumiBloc>().add(AddYaumiEvent(
               yaumi: YaumiModel(
-            id: DateTime(DateTime.now().year, DateTime.now().month,
-                    DateTime.now().day)
-                .toString(),
-            date: DateTime(
-                DateTime.now().year, DateTime.now().month, DateTime.now().day),
+            id: selectedDateState.selectedDate.toString(),
+            date: selectedDateState.selectedDate,
           )));
       return Container();
     } else {
-      return ListView.builder(
-          itemCount: todayYaumi.length,
-          itemBuilder: (context, index) => YaumiTile(
-                todayYaumi: todayYaumi[index],
-              ));
+      return SingleChildScrollView(
+        child: YaumiTile(
+          todayYaumi: todayYaumi[0],
+          yaumiState: yaumiState,
+          selectedDateState: selectedDateState,
+        ),
+      );
     }
   }
 }

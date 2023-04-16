@@ -1,18 +1,26 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+
 import 'package:bloc_practice/blocs/yaumi_bloc/yaumi_bloc.dart';
 import 'package:bloc_practice/models/yaumi_model.dart';
 import 'package:bloc_practice/pages/home/widgets/yaumi_list.dart';
-import 'package:flutter/material.dart';
 
 import '../../../blocs/bloc_exports.dart';
 
 class YaumiPage extends StatelessWidget {
-  const YaumiPage({super.key});
+  final SelectedDateState selectedDateState;
+  final SettingsState settingsState;
+  const YaumiPage({
+    Key? key,
+    required this.selectedDateState,
+    required this.settingsState,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<YaumiBloc, YaumiState>(
-      builder: (context, state) {
-        List<YaumiModel> allYaumis = state.allYaumis;
+      builder: (context, yaumiState) {
+        List<YaumiModel> allYaumis = yaumiState.allYaumis;
         return Expanded(
           child: Container(
             decoration: const BoxDecoration(
@@ -55,7 +63,8 @@ class YaumiPage extends StatelessWidget {
                 Expanded(
                     child: YaumiList(
                   allYaumis: allYaumis,
-                  state: state,
+                  yaumiState: yaumiState,
+                  selectedDateState: selectedDateState,
                 ))
               ],
             ),

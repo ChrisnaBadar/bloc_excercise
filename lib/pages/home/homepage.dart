@@ -16,49 +16,55 @@ class Homepage extends StatelessWidget {
     return BlocProvider(
       create: (context) => SelectedDateBloc(),
       child: BlocBuilder<SelectedDateBloc, SelectedDateState>(
-        builder: (context, state) {
-          return Scaffold(
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(Icons.add),
-            ),
-            backgroundColor: Colors.orange[50],
-            body: SafeArea(
-              child: Column(
-                children: [
-                  //date, location
-                  const DateLocationHeader(
-                    hari: 'Senin',
-                    tanggal: '01 Januari 2023',
-                    wilayah: 'Gegerkalong',
-                    kota: 'Bandung',
-                  ),
+        builder: (context, selectedDateState) {
+          return BlocProvider(
+            create: (context) => SettingsBloc(),
+            child: BlocBuilder<SettingsBloc, SettingsState>(
+              builder: (context, settingsState) {
+                return Scaffold(
+                  backgroundColor: Colors.orange[50],
+                  body: SafeArea(
+                    child: Column(
+                      children: [
+                        //date, location
+                        const DateLocationHeader(
+                          hari: 'Senin',
+                          tanggal: '01 Januari 2023',
+                          wilayah: 'Gegerkalong',
+                          kota: 'Bandung',
+                        ),
 
-                  //userbar
-                  const Userbar(
-                    namaPengguna: 'Nama Pengguna',
-                    infoPengguna: 'Info Pengguna',
-                  ),
+                        //userbar
+                        const Userbar(
+                          namaPengguna: 'Nama Pengguna',
+                          infoPengguna: 'Info Pengguna',
+                        ),
 
-                  //adhan
-                  const AdhanTimes(
-                    shalatTitle: 'Shalat Dhuhur',
-                    shalatTimes: '12:05',
-                    nextShalatTimes: '00:03:00',
-                  ),
+                        //adhan
+                        const AdhanTimes(
+                          shalatTitle: 'Shalat Dhuhur',
+                          shalatTimes: '12:05',
+                          nextShalatTimes: '00:03:00',
+                        ),
 
-                  //datepicker
-                  MyDatePicker(
-                    selectedDateState: state,
-                  ),
+                        //datepicker
+                        MyDatePicker(
+                          selectedDateState: selectedDateState,
+                        ),
 
-                  //yaumi
-                  BlocProvider(
-                    create: (context) => YaumiBloc(),
-                    child: const YaumiPage(),
-                  )
-                ],
-              ),
+                        //yaumi
+                        BlocProvider(
+                          create: (context) => YaumiBloc(),
+                          child: YaumiPage(
+                            selectedDateState: selectedDateState,
+                            settingsState: settingsState,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           );
         },
