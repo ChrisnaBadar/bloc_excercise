@@ -51,7 +51,8 @@ class YaumiPage extends StatelessWidget {
                         label: const Text('Log')),
                     TextButton.icon(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/yaumiSettings');
+                          Navigator.pushReplacementNamed(
+                              context, '/yaumiSettings');
                         },
                         icon: const Icon(Icons.settings),
                         label: const Text('Settings'))

@@ -6,7 +6,7 @@ part 'settings_event.dart';
 part 'settings_state.dart';
 
 class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
-  SettingsBloc() : super(SettingsInitial()) {
+  SettingsBloc() : super(const SettingsInitial()) {
     on<TooggleFardhuEvent>((event, emit) {
       var fardhu = state.fardhu;
       fardhu = !fardhu;

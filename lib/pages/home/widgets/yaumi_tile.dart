@@ -28,187 +28,234 @@ class _YaumiTileState extends State<YaumiTile> {
     final yaumi = widget.yaumiState.allYaumis
         .where((e) => e.date == selectedDate)
         .toList();
-    return Column(
-      children: [
-        ListTile(
-            title: const Text('Shalat Shubuh'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.shubuh,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateShubuhEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Shalat Dhuhur'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.dhuhur,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateDhuhurEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Shalat Ashar'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.ashar,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateAsharEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Shalat Maghrib'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.maghrib,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateMaghribEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Shalat Isya'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.isya,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateIsyaEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Shalat Tahajud'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.tahajud,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateTahajudEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Shalat Rawatib'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.rawatib,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateRawatibEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Shalat Dhuha'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.dhuha,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateDhuhaEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-          title: const Text('Tilawah Qur\'an'),
-          subtitle: const Text('Per Halaman'),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      context
-                          .read<YaumiBloc>()
-                          .add(UpdateDecrementTilawahEvent(yaumi: yaumi.first));
-                    });
-                  },
-                  icon: CircleAvatar(child: Icon(Icons.remove))),
-              Text('${yaumi.first.tilawah}'),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      context
-                          .read<YaumiBloc>()
-                          .add(UpdateIncrementTilawahEvent(yaumi: yaumi.first));
-                    });
-                  },
-                  icon: CircleAvatar(child: Icon(Icons.add))),
-            ],
-          ),
-        ),
-        ListTile(
-            title: const Text('Shaum Sunnah'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.shaum,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateShaumEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Sedekah Harian'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.sedekah,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateSedekahEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Dzikir Pagi'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.dzikirPagi,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateDzikirPagiEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Dzikir Petang'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.dzikirPetang,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateDzikirPetangEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Taklim'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.taklim,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateTaklimEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Istighfar'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.istighfar,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateIstighfarEvent(yaumi: yaumi.first));
-                })),
-        ListTile(
-            title: const Text('Shalawat'),
-            subtitle: const Text('Poin Yaumi'),
-            trailing: Checkbox(
-                value: yaumi.first.shalawat,
-                onChanged: (val) {
-                  context
-                      .read<YaumiBloc>()
-                      .add(UpdateShalawatEvent(yaumi: yaumi.first));
-                })),
-      ],
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      builder: (context, settingsState) {
+        return Column(
+          children: [
+            settingsState.fardhu
+                ? ListTile(
+                    title: const Text('Shalat Shubuh'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.shubuh,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateShubuhEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.fardhu
+                ? ListTile(
+                    title: const Text('Shalat Dhuhur'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.dhuhur,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateDhuhurEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.fardhu
+                ? ListTile(
+                    title: const Text('Shalat Ashar'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.ashar,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateAsharEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.fardhu
+                ? ListTile(
+                    title: const Text('Shalat Maghrib'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.maghrib,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateMaghribEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.fardhu
+                ? ListTile(
+                    title: const Text('Shalat Isya'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.isya,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateIsyaEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.tahajud
+                ? ListTile(
+                    title: const Text('Shalat Tahajud'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.tahajud,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateTahajudEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.rawatib
+                ? ListTile(
+                    title: const Text('Shalat Rawatib'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.rawatib,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateRawatibEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.dhuha
+                ? ListTile(
+                    title: const Text('Shalat Dhuha'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.dhuha,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateDhuhaEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.tilawah
+                ? ListTile(
+                    title: const Text('Tilawah Qur\'an'),
+                    subtitle: const Text('Per Halaman'),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              setState(() {
+                                context.read<YaumiBloc>().add(
+                                    UpdateDecrementTilawahEvent(
+                                        yaumi: yaumi.first));
+                              });
+                            },
+                            icon: CircleAvatar(child: Icon(Icons.remove))),
+                        Text('${yaumi.first.tilawah}'),
+                        IconButton(
+                            onPressed: () {
+                              setState(() {
+                                context.read<YaumiBloc>().add(
+                                    UpdateIncrementTilawahEvent(
+                                        yaumi: yaumi.first));
+                              });
+                            },
+                            icon: CircleAvatar(child: Icon(Icons.add))),
+                      ],
+                    ),
+                  )
+                : Container(),
+            settingsState.shaum
+                ? ListTile(
+                    title: const Text('Shaum Sunnah'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.shaum,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateShaumEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.sedekah
+                ? ListTile(
+                    title: const Text('Sedekah Harian'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.sedekah,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateSedekahEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.dzikir
+                ? ListTile(
+                    title: const Text('Dzikir Pagi'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.dzikirPagi,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateDzikirPagiEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.dzikir
+                ? ListTile(
+                    title: const Text('Dzikir Petang'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.dzikirPetang,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateDzikirPetangEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.taklim
+                ? ListTile(
+                    title: const Text('Taklim'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.taklim,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateTaklimEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.istighfar
+                ? ListTile(
+                    title: const Text('Istighfar'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.istighfar,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateIstighfarEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            settingsState.shalawat
+                ? ListTile(
+                    title: const Text('Shalawat'),
+                    subtitle: const Text('Poin Yaumi'),
+                    trailing: Checkbox(
+                        value: yaumi.first.shalawat,
+                        onChanged: (val) {
+                          context
+                              .read<YaumiBloc>()
+                              .add(UpdateShalawatEvent(yaumi: yaumi.first));
+                        }))
+                : Container(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                  onPressed: () {},
+                  child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: const Text(
+                        'SUBMIT',
+                        textAlign: TextAlign.center,
+                      ))),
+            )
+          ],
+        );
+      },
     );
   }
 }
