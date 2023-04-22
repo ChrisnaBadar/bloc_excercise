@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:bloc_practice/blocs/bloc_exports.dart';
 
 class MyDatePicker extends StatelessWidget {
-  final SelectedDateState selectedDateState;
   const MyDatePicker({
     Key? key,
-    required this.selectedDateState,
   }) : super(key: key);
 
   @override
@@ -17,7 +15,8 @@ class MyDatePicker extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 16.0),
       child: DatePicker(
         DateTime.now().subtract(const Duration(days: 5)),
-        initialSelectedDate: selectedDateState.selectedDate,
+        initialSelectedDate: DateTime(
+            DateTime.now().year, DateTime.now().month, DateTime.now().day),
         selectionColor: const Color.fromARGB(255, 14, 76, 170),
         selectedTextColor: Colors.white,
         onDateChange: (date) {

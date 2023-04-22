@@ -7,6 +7,16 @@ part 'settings_state.dart';
 
 class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
   SettingsBloc() : super(const SettingsInitial()) {
+    on<TooggleAbsenEvent>((event, emit) {
+      var absen = state.absen;
+      absen = !absen;
+      emit(state.copyWith(absen: absen));
+    });
+    on<TooggleShalatReminderEvent>((event, emit) {
+      var shalatReminder = state.shalatReminder;
+      shalatReminder = !shalatReminder;
+      emit(state.copyWith(shalatReminder: shalatReminder));
+    });
     on<TooggleFardhuEvent>((event, emit) {
       var fardhu = state.fardhu;
       fardhu = !fardhu;

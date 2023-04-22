@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:bloc/bloc.dart';
 import 'package:bloc_practice/models/yaumi_model.dart';
 import 'package:equatable/equatable.dart';
@@ -26,7 +28,7 @@ class YaumiBloc extends Bloc<YaumiEvent, YaumiState> {
     on<UpdateTaklimEvent>(_onUpdateEvent);
     on<UpdateIstighfarEvent>(_onUpdateEvent);
     on<UpdateShalawatEvent>(_onUpdateEvent);
-    on<DeleteYaumiEvent>(_onDeleteYaumiEvent);
+    on<DeleteYaumiEvent>(_onDeleteYaumi);
   }
 
   void _onAddYaumiEvent(AddYaumiEvent event, Emitter<YaumiState> emit) {
@@ -37,74 +39,139 @@ class YaumiBloc extends Bloc<YaumiEvent, YaumiState> {
   void _onUpdateEvent(dynamic event, Emitter<YaumiState> emit) {
     final state = this.state;
     final yaumi = event.yaumi;
+    final poin = event.poinHariIni;
     List<YaumiModel> allYaumis = List.from(state.allYaumis)..remove(yaumi);
     switch (event.runtimeType) {
       case UpdateShubuhEvent:
-        allYaumis.add(yaumi.copyWith(shubuh: !(yaumi.shubuh)));
+        allYaumis.add(yaumi.copyWith(
+            shubuh: !(yaumi.shubuh),
+            poinHariIni: !(yaumi.shubuh)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateDhuhurEvent:
-        allYaumis.add(yaumi.copyWith(dhuhur: !(yaumi.dhuhur)));
+        allYaumis.add(yaumi.copyWith(
+            dhuhur: !(yaumi.dhuhur),
+            poinHariIni: !(yaumi.dhuhur)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateAsharEvent:
-        allYaumis.add(yaumi.copyWith(ashar: !(yaumi.ashar)));
+        allYaumis.add(yaumi.copyWith(
+            ashar: !(yaumi.ashar),
+            poinHariIni: !(yaumi.ashar)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateMaghribEvent:
-        allYaumis.add(yaumi.copyWith(maghrib: !(yaumi.maghrib)));
+        allYaumis.add(yaumi.copyWith(
+            maghrib: !(yaumi.maghrib),
+            poinHariIni: !(yaumi.maghrib)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateIsyaEvent:
-        allYaumis.add(yaumi.copyWith(isya: !(yaumi.isya)));
+        allYaumis.add(yaumi.copyWith(
+            isya: !(yaumi.isya),
+            poinHariIni: !(yaumi.isya)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateTahajudEvent:
-        allYaumis.add(yaumi.copyWith(tahajud: !(yaumi.tahajud)));
+        allYaumis.add(yaumi.copyWith(
+            tahajud: !(yaumi.tahajud),
+            poinHariIni: !(yaumi.tahajud)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateRawatibEvent:
-        allYaumis.add(yaumi.copyWith(rawatib: !(yaumi.rawatib)));
+        allYaumis.add(yaumi.copyWith(
+            rawatib: !(yaumi.rawatib),
+            poinHariIni: !(yaumi.rawatib)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateDhuhaEvent:
-        allYaumis.add(yaumi.copyWith(dhuha: !(yaumi.dhuha)));
+        allYaumis.add(yaumi.copyWith(
+            dhuha: !(yaumi.dhuha),
+            poinHariIni: !(yaumi.dhuha)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateIncrementTilawahEvent:
-        if (yaumi.tilawah < 10) {
-          yaumi.tilawah++;
-          allYaumis.add(yaumi.copyWith(tilawah: yaumi.tilawah));
-        } else {
-          return;
-        }
+        allYaumis.add(yaumi.copyWith(
+            tilawah: (yaumi.tilawah) < 10
+                ? yaumi.tilawah + poin.toInt()
+                : yaumi.tilawah,
+            poinHariIni: (yaumi.tilawah) < 10
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni));
         break;
       case UpdateDecrementTilawahEvent:
-        if (yaumi.tilawah > 0) {
-          yaumi.tilawah--;
-          allYaumis.add(yaumi.copyWith(tilawah: yaumi.tilawah));
-        } else {
-          return;
-        }
+        allYaumis.add(yaumi.copyWith(
+            tilawah: (yaumi.tilawah) > 0
+                ? yaumi.tilawah - poin.toInt()
+                : yaumi.tilawah,
+            poinHariIni: (yaumi.tilawah) > 0
+                ? yaumi.poinHariIni - poin
+                : yaumi.poinHariIni));
         break;
       case UpdateShaumEvent:
-        allYaumis.add(yaumi.copyWith(shaum: !(yaumi.shaum)));
+        allYaumis.add(yaumi.copyWith(
+            shaum: !(yaumi.shaum),
+            poinHariIni: !(yaumi.shaum)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateSedekahEvent:
-        allYaumis.add(yaumi.copyWith(sedekah: !(yaumi.sedekah)));
+        allYaumis.add(yaumi.copyWith(
+            sedekah: !(yaumi.sedekah),
+            poinHariIni: !(yaumi.sedekah)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateDzikirPagiEvent:
-        allYaumis.add(yaumi.copyWith(dzikirPagi: !(yaumi.dzikirPagi)));
+        allYaumis.add(yaumi.copyWith(
+            dzikirPagi: !(yaumi.dzikirPagi),
+            poinHariIni: !(yaumi.dzikirPagi)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateDzikirPetangEvent:
-        allYaumis.add(yaumi.copyWith(dzikirPetang: !(yaumi.dzikirPetang)));
+        allYaumis.add(yaumi.copyWith(
+            dzikirPetang: !(yaumi.dzikirPetang),
+            poinHariIni: !(yaumi.dzikirPetang)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateTaklimEvent:
-        allYaumis.add(yaumi.copyWith(taklim: !(yaumi.taklim)));
+        allYaumis.add(yaumi.copyWith(
+            taklim: !(yaumi.taklim),
+            poinHariIni: !(yaumi.taklim)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateIstighfarEvent:
-        allYaumis.add(yaumi.copyWith(istighfar: !(yaumi.istighfar)));
+        allYaumis.add(yaumi.copyWith(
+            istighfar: !(yaumi.istighfar),
+            poinHariIni: !(yaumi.istighfar)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
       case UpdateShalawatEvent:
-        allYaumis.add(yaumi.copyWith(shalawat: !(yaumi.shalawat)));
-        break;
-      default:
+        allYaumis.add(yaumi.copyWith(
+            shalawat: !(yaumi.shalawat),
+            poinHariIni: !(yaumi.shalawat)
+                ? yaumi.poinHariIni + poin
+                : yaumi.poinHariIni - poin));
         break;
     }
     emit(YaumiState(allYaumis: allYaumis));
   }
 
-  void _onDeleteYaumiEvent(DeleteYaumiEvent event, Emitter<YaumiState> emit) {}
+  void _onDeleteYaumi(DeleteYaumiEvent event, Emitter<YaumiState> emit) {
+    final state = this.state;
+    final yaumi = event.yaumi;
+    emit(YaumiState(allYaumis: List.from(state.allYaumis)..remove(yaumi)));
+  }
 }

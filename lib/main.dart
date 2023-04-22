@@ -17,12 +17,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SettingsBloc(),
+        ),
+        BlocProvider(
+          create: (context) => SelectedDateBloc(),
+        ),
+        BlocProvider(
+          create: (context) => YaumiBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        routes: MyRoutes().routes,
       ),
-      routes: MyRoutes().routes,
     );
   }
 }

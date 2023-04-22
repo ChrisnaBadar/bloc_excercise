@@ -2,6 +2,10 @@ part of 'settings_bloc.dart';
 
 class SettingsEvent {}
 
+class TooggleAbsenEvent extends SettingsEvent {}
+
+class TooggleShalatReminderEvent extends SettingsEvent {}
+
 class TooggleFardhuEvent extends SettingsEvent {}
 
 class TooggleTahajudEvent extends SettingsEvent {}

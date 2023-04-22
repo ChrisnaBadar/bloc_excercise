@@ -1,6 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'settings_bloc.dart';
 
 class SettingsState extends Equatable {
+  final bool absen;
+  final bool shalatReminder;
   final bool fardhu;
   final bool tahajud;
   final bool dhuha;
@@ -13,6 +16,8 @@ class SettingsState extends Equatable {
   final bool shalawat;
   final bool istighfar;
   const SettingsState({
+    required this.absen,
+    required this.shalatReminder,
     required this.fardhu,
     required this.tahajud,
     required this.dhuha,
@@ -28,6 +33,8 @@ class SettingsState extends Equatable {
 
   @override
   List<Object> get props => [
+        absen,
+        shalatReminder,
         fardhu,
         tahajud,
         dhuha,
@@ -42,6 +49,8 @@ class SettingsState extends Equatable {
       ];
 
   SettingsState copyWith({
+    bool? absen,
+    bool? shalatReminder,
     bool? fardhu,
     bool? tahajud,
     bool? dhuha,
@@ -55,6 +64,8 @@ class SettingsState extends Equatable {
     bool? istighfar,
   }) {
     return SettingsState(
+      absen: absen ?? this.absen,
+      shalatReminder: shalatReminder ?? this.shalatReminder,
       fardhu: fardhu ?? this.fardhu,
       tahajud: tahajud ?? this.tahajud,
       dhuha: dhuha ?? this.dhuha,
@@ -71,6 +82,8 @@ class SettingsState extends Equatable {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'absen': absen,
+      'shalatReminder': shalatReminder,
       'fardhu': fardhu,
       'tahajud': tahajud,
       'dhuha': dhuha,
@@ -87,6 +100,8 @@ class SettingsState extends Equatable {
 
   factory SettingsState.fromMap(Map<String, dynamic> map) {
     return SettingsState(
+      absen: map['absen'] as bool,
+      shalatReminder: map['shalatReminder'] as bool,
       fardhu: map['fardhu'] as bool,
       tahajud: map['tahajud'] as bool,
       dhuha: map['dhuha'] as bool,
@@ -105,6 +120,8 @@ class SettingsState extends Equatable {
 class SettingsInitial extends SettingsState {
   const SettingsInitial()
       : super(
+          absen: false,
+          shalatReminder: false,
           fardhu: false,
           tahajud: false,
           dhuha: false,

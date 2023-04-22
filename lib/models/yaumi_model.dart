@@ -19,26 +19,29 @@ class YaumiModel extends Equatable {
   bool? taklim;
   bool? istighfar;
   bool? shalawat;
-  YaumiModel({
-    required this.id,
-    required this.date,
-    this.shubuh,
-    this.dhuhur,
-    this.ashar,
-    this.maghrib,
-    this.isya,
-    this.tahajud,
-    this.rawatib,
-    this.dhuha,
-    this.tilawah,
-    this.shaum,
-    this.sedekah,
-    this.dzikirPagi,
-    this.dzikirPetang,
-    this.taklim,
-    this.istighfar,
-    this.shalawat,
-  }) {
+  double? poinHariIni;
+  bool? isSubmitted;
+  YaumiModel(
+      {required this.id,
+      required this.date,
+      this.shubuh,
+      this.dhuhur,
+      this.ashar,
+      this.maghrib,
+      this.isya,
+      this.tahajud,
+      this.rawatib,
+      this.dhuha,
+      this.tilawah,
+      this.shaum,
+      this.sedekah,
+      this.dzikirPagi,
+      this.dzikirPetang,
+      this.taklim,
+      this.istighfar,
+      this.shalawat,
+      this.poinHariIni,
+      this.isSubmitted}) {
     shubuh = shubuh ?? false;
     dhuhur = dhuhur ?? false;
     ashar = ashar ?? false;
@@ -55,6 +58,8 @@ class YaumiModel extends Equatable {
     taklim = taklim ?? false;
     istighfar = istighfar ?? false;
     shalawat = shalawat ?? false;
+    poinHariIni = poinHariIni ?? 0.0;
+    isSubmitted = isSubmitted ?? false;
   }
 
   @override
@@ -76,7 +81,9 @@ class YaumiModel extends Equatable {
         dzikirPetang,
         taklim,
         istighfar,
-        shalawat
+        shalawat,
+        poinHariIni,
+        isSubmitted
       ];
 
   Map<String, dynamic> toMap() {
@@ -99,6 +106,8 @@ class YaumiModel extends Equatable {
       'taklim': taklim,
       'istighfar': istighfar,
       'shalawat': shalawat,
+      'poinHariIni': poinHariIni,
+      'isSubmitted': isSubmitted
     };
   }
 
@@ -123,6 +132,10 @@ class YaumiModel extends Equatable {
       taklim: map['taklim'] != null ? map['taklim'] as bool : null,
       istighfar: map['istighfar'] != null ? map['istighfar'] as bool : null,
       shalawat: map['shalawat'] != null ? map['shalawat'] as bool : null,
+      poinHariIni:
+          map['poinHariIni'] != null ? map['poinHariIni'] as double : null,
+      isSubmitted:
+          map['isSubmitted'] != null ? map['isSubmitted'] as bool : null,
     );
   }
 
@@ -145,6 +158,8 @@ class YaumiModel extends Equatable {
     bool? taklim,
     bool? istighfar,
     bool? shalawat,
+    double? poinHariIni,
+    bool? isSubmitted,
   }) {
     return YaumiModel(
       id: id ?? this.id,
@@ -165,6 +180,8 @@ class YaumiModel extends Equatable {
       taklim: taklim ?? this.taklim,
       istighfar: istighfar ?? this.istighfar,
       shalawat: shalawat ?? this.shalawat,
+      poinHariIni: poinHariIni ?? this.poinHariIni,
+      isSubmitted: isSubmitted ?? this.isSubmitted,
     );
   }
 }
